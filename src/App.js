@@ -1,5 +1,6 @@
 import './App.css';
 import Larder from './larder/Larder.js'
+import ShoppingList from './shopping-list/ShoppingList.js'
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <div>
         This is content
         <Larder></Larder>
+        <ShoppingList/>
       </div>
     </div>
   );
