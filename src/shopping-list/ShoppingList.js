@@ -2,7 +2,7 @@ import React from 'react'
 import './ShoppingList.css';
 
 class ShoppingList extends React.Component {
-  state ={};
+  state = {};
   render(){
   return(
   <p className='list'>this is shopping list component</p>
@@ -11,4 +11,3 @@ class ShoppingList extends React.Component {
 };
 
 export default ShoppingList;
-
