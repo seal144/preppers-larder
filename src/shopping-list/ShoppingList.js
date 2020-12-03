@@ -7,7 +7,7 @@ class ShoppingList extends React.Component {
   return(
   <p className='list'>this is shopping list component</p>
   )
-  }
+  };
 };
 
 export default ShoppingList;
