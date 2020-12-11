@@ -3,12 +3,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
+import { Link, BrowserRouter as Router } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 // @todo implement sass https://create-react-app.dev/docs/adding-a-sass-stylesheet
 
-import Larder from'./larder/Larder.js';
-import ShoppingList from './shopping-list/ShoppingList.js';
+import RouteContent from'./layout/RouteContent.js';
 
 const { Header, Content, Footer } = Layout;
 
@@ -54,19 +53,7 @@ const Routing = (
         @todo replace style with some common class
       */}
       <Content style={{ padding: '0 50px' }}>
-        {/*
-          @todo add rew component: RouteContent
-          @todo handle default route or create 404 page
-        */}
-        <Route 
-          path="/larder" 
-          component={Larder} 
-        />
-
-        <Route 
-          path="/shopping-list" 
-          component={ShoppingList} 
-        />
+        <RouteContent />
       </Content>
       {/*
         @todo replace style with some common class
