@@ -23,7 +23,7 @@ const Routing = (
     <Layout className="layout">
       <Header>
         {/*
-          @DONE fix bug with defaultSelectedKeys on reresh page, could be solved by (D)
+          @todo fix bug with defaultSelectedKeys on reresh page, could be solved by (D)
           @todo see themes and modes*
           @todo add new component: Menu or (B) or (C)
           @todo add new component: (C) HeaderContent
