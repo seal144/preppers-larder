@@ -6,7 +6,7 @@ const NavContent = () => {
   const navData = [
     { label: 'Larder', path: '/larder', key: '1' },
     { label: 'Shopping list', path: '/shopping-list', key: '2' }
-  ]
+  ];
 
   const currentPath = useLocation().pathname;
   const selectedNavItem = navData.find(navItem => currentPath.includes(navItem.path));

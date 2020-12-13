@@ -3,7 +3,7 @@ import './Larder.css';
 
 class Larder extends React.Component {
   render() {
-    return <p>This is Larder component</p>
+    return <p>This is Larder component</p>;
   };
 };
 
