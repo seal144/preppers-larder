@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route , Redirect } from 'react-router-dom';
 
 import Larder from'../larder/Larder.js';
 import ShoppingList from '../shopping-list/ShoppingList.js';
@@ -7,9 +7,6 @@ import ShoppingList from '../shopping-list/ShoppingList.js';
 const RouteContent = () => {
   return(
     <React.Fragment>
-      {/*
-       @todo handle default route or create 404 page
-      */}
       <Route 
         path="/larder" 
         component={Larder} 
@@ -19,6 +16,11 @@ const RouteContent = () => {
         path="/shopping-list" 
         component={ShoppingList} 
       />
+
+      {/*
+       @todo handle unauthenticated users
+      */}
+      <Redirect from='*' to='/larder' />
     </React.Fragment>
   );
 };
