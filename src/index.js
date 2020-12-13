@@ -3,17 +3,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { Link, BrowserRouter as Router } from 'react-router-dom';
-import { Layout, Menu } from 'antd';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Layout } from 'antd';
 // @todo implement sass https://create-react-app.dev/docs/adding-a-sass-stylesheet
 
 import RouteContent from'./layout/RouteContent.js';
+import NavContent from'./layout/NavContent.js';
 
 const { Header, Content, Footer } = Layout;
 
 // @todo create variable with urls to pass to child components
-// @todo think better variable name than Routing
-const Routing = (
+const App = (
   <Router>
     {/*
       @todo change favicon
@@ -28,26 +28,7 @@ const Routing = (
           @todo add new component: (C) HeaderContent
           @todo add bigger padding too look like a page (better for mobile?)
         */}
-        <Menu 
-          theme="dark" 
-          mode="horizontal" 
-          defaultSelectedKeys={['2']}
-        >
-          {/*
-            @todo (B) add new component: Navigation
-            @todo use grid for items
-            @todo add icons for links@todo change favicon
-            @todo separately import item?
-            @todo (D) create object with Menu.item.key as key and route info as value and iterate to show Menu,Item
-          */}
-          <Menu.Item key="1">
-            <Link to="/larder">Larder</Link>
-          </Menu.Item>
-          
-          <Menu.Item key="2">
-            <Link to="/shopping-list">Shopping-list</Link>
-          </Menu.Item>
-        </Menu>
+        <NavContent />
       </Header>
       {/*
         @todo replace style with some common class
@@ -64,7 +45,7 @@ const Routing = (
   </Router>
 );
 
-ReactDOM.render(Routing, document.getElementById('root'));
+ReactDOM.render(App, document.getElementById('root'));
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
