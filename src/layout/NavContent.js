@@ -10,13 +10,13 @@ const NavContent = () => {
 
   const currentPath = useLocation().pathname;
   const selectedNavItem = navData.find(navItem => currentPath.includes(navItem.path));
-  const defaultSelectedKey = selectedNavItem ? selectedNavItem.key : null;
+  const selectedNavKey = selectedNavItem ? selectedNavItem.key : null;
   
   return(
     <Menu 
       theme="dark" 
       mode="horizontal" 
-      selectedKeys={[defaultSelectedKey]}
+      selectedKeys={[selectedNavKey]}
     >
       {/*
         @todo use grid for items

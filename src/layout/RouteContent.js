@@ -18,6 +18,7 @@ const RouteContent = () => {
       />
 
       {/*
+       @todo fix default route
        @todo handle unauthenticated users
       */}
       <Redirect from='*' to='/larder' />
