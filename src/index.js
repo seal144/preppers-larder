@@ -1,4 +1,3 @@
-// @todo add linter rules: ;
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -6,6 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Layout } from 'antd';
 // @todo implement sass https://create-react-app.dev/docs/adding-a-sass-stylesheet
+// @todo implement prettier
 
 import RouteContent from'./layout/RouteContent.js';
 import NavContent from'./layout/NavContent.js';
