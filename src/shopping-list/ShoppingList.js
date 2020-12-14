@@ -1,5 +1,5 @@
 import React from 'react';
-import './ShoppingList.css';
+import './ShoppingList.scss';
 
 class ShoppingList extends React.Component {
   state = {};
