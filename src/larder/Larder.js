@@ -1,5 +1,5 @@
 import React from 'react';
-import './Larder.css';
+import './Larder.scss';
 
 class Larder extends React.Component {
   render() {
