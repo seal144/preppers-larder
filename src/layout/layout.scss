@@ -1,0 +1,18 @@
+@import "../style/variable.scss";
+
+.main-menu {
+  padding: $content-padding;
+  display: flex;
+  align-content: space-between;
+
+  &__item {
+    letter-spacing: 0.2rem;
+    font-size: 1.5rem;
+    width: 50%;
+    text-align: center;
+  }
+}
+
+.content {
+  padding: $content-padding;
+}

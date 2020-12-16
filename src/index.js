@@ -4,7 +4,6 @@ import './index.scss';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Layout } from 'antd';
-// @todo implement sass https://create-react-app.dev/docs/adding-a-sass-stylesheet
 // @todo implement prettier
 
 import RouteContent from'./layout/RouteContent.js';
@@ -12,28 +11,21 @@ import NavContent from'./layout/NavContent.js';
 
 const { Header, Content, Footer } = Layout;
 
-// @todo create variable with urls to pass to child components
 const App = (
   <Router>
     {/*
       @todo change favicon
       @todo clear public dir
     */}
-    <Layout className="layout">
+    <Layout className="app">
       <Header>
         {/*
-          @todo fix bug with defaultSelectedKeys on reresh page, could be solved by (D)
           @todo see themes and modes*
-          @todo add new component: Menu or (B) or (C)
-          @todo add new component: (C) HeaderContent
-          @todo add bigger padding too look like a page (better for mobile?)
         */}
         <NavContent />
       </Header>
-      {/*
-        @todo replace style with some common class
-      */}
-      <Content style={{ padding: '0 50px' }}>
+      
+      <Content>
         <RouteContent />
       </Content>
       {/*

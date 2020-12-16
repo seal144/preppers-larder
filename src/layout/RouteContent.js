@@ -3,13 +3,14 @@ import { Route , Redirect } from 'react-router-dom';
 
 import Larder from'../larder/Larder.js';
 import ShoppingList from '../shopping-list/ShoppingList.js';
+import './layout.scss';
 
 const RouteContent = () => {
   return(
-    <React.Fragment>
+    <div className='content'>
       <Route 
         path="/larder" 
-        component={Larder} 
+        component={Larder}
       />
 
       <Route 
@@ -22,7 +23,7 @@ const RouteContent = () => {
        @todo handle unauthenticated users
       */}
       <Redirect from='*' to='/larder' />
-    </React.Fragment>
+    </div>
   );
 };
 
