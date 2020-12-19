@@ -17,14 +17,14 @@ const NavContent = () => {
       theme="dark" 
       mode="horizontal" 
       selectedKeys={[selectedNavKey]}
+      className="main-menu"
     >
       {/*
-        @todo use grid for items
-        @todo add icons for links@todo change favicon
+        @todo add icons for links
       */}
       {
         navData.map(navItem => (
-          <Menu.Item key={navItem.key}>
+          <Menu.Item key={navItem.key} className="main-menu__item">
             <Link to={navItem.path}>
               {navItem.label}
             </Link> 

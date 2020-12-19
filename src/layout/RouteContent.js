@@ -6,10 +6,10 @@ import ShoppingList from '../shopping-list/ShoppingList.js';
 
 const RouteContent = () => {
   return(
-    <React.Fragment>
+    <div className='content'>
       <Route 
         path="/larder" 
-        component={Larder} 
+        component={Larder}
       />
 
       <Route 
@@ -22,7 +22,7 @@ const RouteContent = () => {
        @todo handle unauthenticated users
       */}
       <Redirect from='*' to='/larder' />
-    </React.Fragment>
+    </div>
   );
 };
 
