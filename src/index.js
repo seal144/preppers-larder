@@ -17,7 +17,7 @@ const App = (
       @todo change favicon
       @todo clear public dir
     */}
-    <Layout className="app">
+    <Layout className="layout">
       <Header>
         {/*
           @todo see themes and modes*

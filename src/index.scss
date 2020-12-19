@@ -2,8 +2,4 @@
 @import "./style/font.scss";
 @import "./style/overrides.scss";
 @import "./style/variable.scss";
-
-// @todo move class definition layout.scss x instead changed class name to app
-.app {
-  min-height: 100vh;
-}
+@import "./layout/layout.scss";

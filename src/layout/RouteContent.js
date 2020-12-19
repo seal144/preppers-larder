@@ -3,7 +3,6 @@ import { Route , Redirect } from 'react-router-dom';
 
 import Larder from'../larder/Larder.js';
 import ShoppingList from '../shopping-list/ShoppingList.js';
-import './layout.scss';
 
 const RouteContent = () => {
   return(
