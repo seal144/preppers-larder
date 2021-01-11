@@ -1,17 +1,19 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu } from 'antd';
+import { InsertRowRightOutlined, CopyOutlined } from '@ant-design/icons';
 
 const NavContent = () => {
   const navData = [
-    { label: 'Larder', path: '/larder', key: '1' },
-    { label: 'Shopping list', path: '/shopping-list', key: '2' }
+    { id: '1', label: 'Larder', path: '/larder', icon: <InsertRowRightOutlined className="main-menu__item__nav-icon"/> },
+    { id: '2', label: 'Shopping list', path: '/shopping-list', icon: <CopyOutlined className="main-menu__item__nav-icon"/> }
   ];
 
   const currentPath = useLocation().pathname;
   const selectedNavItem = navData.find(navItem => currentPath.includes(navItem.path));
-  const selectedNavKey = selectedNavItem ? selectedNavItem.key : null;
+  const selectedNavKey = selectedNavItem ? selectedNavItem.id : null;
   
+  console.log(selectedNavKey);
   return(
     <Menu 
       theme="dark" 
@@ -24,9 +26,9 @@ const NavContent = () => {
       */}
       {
         navData.map(navItem => (
-          <Menu.Item key={navItem.key} className="main-menu__item">
+          <Menu.Item key={navItem.id} className="main-menu__item" icon={navItem.icon}>
             <Link to={navItem.path}>
-              {navItem.label}
+              <span className="hidden-mobile">{navItem.label}</span>
             </Link> 
           </Menu.Item>
         ))
