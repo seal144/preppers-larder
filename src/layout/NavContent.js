@@ -13,7 +13,6 @@ const NavContent = () => {
   const selectedNavItem = navData.find(navItem => currentPath.includes(navItem.path));
   const selectedNavKey = selectedNavItem ? selectedNavItem.id : null;
   
-  console.log(selectedNavKey);
   return(
     <Menu 
       theme="dark" 
