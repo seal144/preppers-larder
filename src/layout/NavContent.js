@@ -20,9 +20,6 @@ const NavContent = () => {
       selectedKeys={[selectedNavKey]}
       className="main-menu"
     >
-      {/*
-        @todo add icons for links
-      */}
       {
         navData.map(navItem => (
           <Menu.Item key={navItem.id} className="main-menu__item" icon={navItem.icon}>
