@@ -1,5 +1,5 @@
-import React from 'react'
-import './ShoppingList.css';
+import React from 'react';
+import './ShoppingList.scss';
 
 class ShoppingList extends React.Component {
   state = {};
@@ -7,8 +7,8 @@ class ShoppingList extends React.Component {
   render() {
     return(
       <p className='list'>this is shopping list component</p>
-    )
-  };
+    );
+  }
 };
 
 export default ShoppingList;

@@ -1,0 +1,32 @@
+@import "../style/variable.scss";
+
+.layout {
+  min-height: 100vh;
+
+  .main-menu {
+    padding: $content-padding;
+    display: flex;
+    align-content: space-between;
+
+    &__item {
+      letter-spacing: 0.2rem;
+      font-size: 1.5rem;
+      width: 50%;
+      text-align: center;
+
+      &__nav-icon {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  .content {
+    padding: $content-padding;
+  }
+}
+
+@media (max-width: $screen-sm) {
+  .hidden-mobile {
+    display: none;
+  }
+}

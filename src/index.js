@@ -1,39 +1,43 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './index.scss';
 import reportWebVitals from './reportWebVitals';
-import { Route, NavLink, BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Layout } from 'antd';
+// @todo implement prettier
 
-import Larder from'./larder/Larder.js';
-import ShoppingList from './shopping-list/ShoppingList.js';
+import RouteContent from'./layout/RouteContent.js';
+import NavContent from'./layout/NavContent.js';
 
-const routing = (
+const { Header, Content, Footer } = Layout;
+
+const App = (
   <Router>
-    <div>
-      <ul>
-        <li>
-          <NavLink 
-            activeClassName="nav-active" 
-            to="/larder"
-          >
-            Larder
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-           activeClassName="nav-active" 
-           to="/shopping-list"
-          >
-            Shopping-list
-          </NavLink>
-        </li>
-      </ul>
-      <Route path="/larder" component={Larder} />
-      <Route path="/shopping-list" component={ShoppingList} />
-    </div>
+    {/*
+      @todo change favicon
+      @todo clear public dir
+    */}
+    <Layout className="layout">
+      <Header>
+        {/*
+          @todo see themes and modes*
+        */}
+        <NavContent />
+      </Header>
+      
+      <Content>
+        <RouteContent />
+      </Content>
+      {/*
+        @todo replace style with some common class
+        @todo add some content
+      */}
+      <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+    </Layout>
   </Router>
-)
-ReactDOM.render(routing, document.getElementById('root'))
+);
+
+ReactDOM.render(App, document.getElementById('root'));
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
