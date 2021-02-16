@@ -32,7 +32,7 @@ const App = (
         @todo replace style with some common class
         @todo add some content
       */}
-      <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+      <Footer style={{ textAlign: 'center' }}>STOPKA :) FOR SAFER FUTURE </Footer>
     </Layout>
   </Router>
 );
