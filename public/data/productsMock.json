@@ -1,0 +1,61 @@
+[
+  {
+    "id": 1,
+    "userId": 1,
+    "name": "bean",
+    "desiredQuantity": 3,
+    "expiration": true,
+    "metadata": { "type": "canned" },
+    "type": "COUNTABLE",
+    "items": [
+      {
+        "id": 1,
+        "expireAt": "2021-10-12",
+        "addedAt" : "2021-02-15",
+        "metadata": { "color": "red", "weight": "400g" }
+      },
+      { 
+        "id": 2,
+        "expireAt": "2022-02-03",
+        "addedAt": "2021-01-19",
+        "metadata": { "color": "white" }
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "userId": 1,
+    "name": "potatoes",
+    "quantity": 50,
+    "desiredQuantity": 50,
+    "metadata": {
+      "unit": "kg",
+      "type": "irga",
+      "note": "Dostałem od Władka, są świetne, paluszki lizać, kupować u Niego!"
+    },
+    "type": "UNCOUNTABLE"
+  },
+  {
+    "id": 3,
+    "userId": 1,
+    "name": "candle",
+    "desiredQuantity": 5,
+    "expiration": false,
+    "metadata": {},
+    "type": "COUNTABLE",
+    "items": [
+      { 
+        "id": 1, 
+        "metadata": { "note": "short" },
+        "addedAt": "2020-10-02"
+      },
+      {
+        "id": 2,
+        "metadata": {
+          "note": "zapachowa o zapachu lasu iglastego wschodniej Białorusi. zapachowa o zapachu lasu iglastego wschodniej Białorusi. zapachowa o zapachu lasu iglastego wschodniej Białorusi. zapachowa o zapachu lasu iglastego wschodniej Białorusi. zapachowa o zapachu lasu iglastego wschodniej Białorusi. 123456789012345"
+        },
+        "addedAt": "2020-09-01"
+      }
+    ]
+  }
+]
