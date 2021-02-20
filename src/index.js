@@ -32,7 +32,7 @@ const App = (
         @todo replace style with some common class
         @todo add some content
       */}
-      <Footer style={{ textAlign: 'center' }}>STOPKA :) FOR SAFER FUTURE </Footer>
+      <Footer className="footer">STOPKA :) FOR SAFER FUTURE </Footer>
     </Layout>
   </Router>
 );

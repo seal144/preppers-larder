@@ -1,0 +1,10 @@
+@import "../style/variable.scss";
+
+.add-product-button {
+  width: 4rem;
+  height: 4rem;
+  font-size: 2rem;
+  position: fixed;
+  right: $content-vertical-padding;
+  bottom: 12vh;
+}

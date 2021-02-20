@@ -18,6 +18,11 @@ const RouteContent = () => {
           component={ShoppingList} 
         />
 
+        <Route
+          path="/product" 
+          component={ShoppingList} 
+        />
+
         {/*
         @todo handle unauthenticated users
         */}

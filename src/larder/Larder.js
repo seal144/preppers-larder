@@ -1,6 +1,7 @@
 import React from 'react';
-import { Collapse } from 'antd';
-import { DeleteOutlined } from '@ant-design/icons';
+import { Collapse, Button } from 'antd';
+import { DeleteOutlined, PlusOutlined } from '@ant-design/icons';
+import { Link } from 'react-router-dom';
 
 import './Larder.scss';
 import Metadata from './Metadata/Metadata';
@@ -8,6 +9,7 @@ import ItemsList from './ItemsList/ItemsList';
 
 const { Panel } = Collapse;
 
+//@todo add info in collapse
 class Larder extends React.Component {
   state = {
     productsMock: []
@@ -51,6 +53,12 @@ class Larder extends React.Component {
             ))
           }
         </Collapse>
+
+        <Link to="/product">
+          <Button className="add-product-button" type="primary" shape="circle">
+            <PlusOutlined height="4rem" className="add-product-button__icon"/>
+          </Button>
+        </Link>
       </div>
     );
   };
