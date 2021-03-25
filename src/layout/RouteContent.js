@@ -1,8 +1,9 @@
 import React from 'react';
 import { Route , Redirect, Switch } from 'react-router-dom';
 
-import Larder from'../larder/Larder.js';
-import ShoppingList from '../shopping-list/ShoppingList.js';
+import Larder from'../larder/Larder';
+import ShoppingList from '../shopping-list/ShoppingList';
+import Product from '../larder/Product/Product';
 
 const RouteContent = () => {
   return(
@@ -11,16 +12,19 @@ const RouteContent = () => {
         <Route 
           path="/larder" 
           component={Larder}
+          exact
+        />
+        
+        <Route 
+          path="/larder/product" 
+          component={Product}
+          exact
         />
 
         <Route 
           path="/shopping-list" 
           component={ShoppingList} 
-        />
-
-        <Route
-          path="/product" 
-          component={ShoppingList} 
+          exact
         />
 
         {/*
