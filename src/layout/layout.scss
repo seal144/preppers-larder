@@ -4,7 +4,7 @@
   min-height: 100vh;
 
   .main-menu {
-    padding: $content-padding;
+    padding: 0 $content-vertical-padding;
     display: flex;
     align-content: space-between;
 
@@ -21,7 +21,15 @@
   }
 
   .content {
-    padding: $content-padding;
+    padding: 0 $content-vertical-padding;
+  }
+
+  .footer {
+    text-align: center;
+    height: 10vh;
+    background-color: $app-theme-dark;
+    color: white;
+    font-size: 1.2rem;
   }
 }
 

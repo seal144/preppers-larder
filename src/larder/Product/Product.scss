@@ -1,0 +1,13 @@
+.product-form {
+  margin: 50px auto;
+
+  &__metadata {
+    &__add-button {
+      width: 100%;
+    }
+
+    &__space {
+      display: flex;
+    }
+  }
+}
