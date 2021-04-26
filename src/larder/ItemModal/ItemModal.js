@@ -1,6 +1,7 @@
 import React from 'react';
-import { Input, Modal, Form, DatePicker, Space, Button } from 'antd';
-import { DeleteOutlined } from '@ant-design/icons';
+import { Modal, Form, DatePicker } from 'antd';
+
+import MetadataForm from '../Metadata/MetadadaForm';
 
 const ItemModal = ({ visible, toggleVisibility }) => {
   const [form] = Form.useForm();
@@ -48,40 +49,7 @@ const ItemModal = ({ visible, toggleVisibility }) => {
           >
            <DatePicker />
           </Form.Item>
-          <Form.List name='metadata'>
-            {
-              // @todo fix classNames and reusable component for adding metadata
-              (fields, {add, remove}) => (
-                <>
-                  {fields.map(field => (
-                    <Space key={field.key} className="product-form__metadata__space">
-                      <Form.Item 
-                        { ...field }
-                        className = "product-form__metadata__input"
-                        name={[field.name, 'metadataName']}
-                        rules={[{ required: true, message: 'Missing metadata name' }]}
-                      >
-                        <Input placeholder="metadata name" />
-                      </Form.Item>
-
-                      <Form.Item 
-                        { ...field }
-                        className = "product-form__metadata__input"
-                        rules={[{ required: true, message: 'Missing metadata value' }]}
-                        name={[field.name, 'metadataValue']}
-                      >
-                        <Input placeholder="metadata value" />
-                      </Form.Item>
-                      <DeleteOutlined onClick={() => remove(field.name)} />
-                    </Space>
-                  ))}
-                  <Button onClick={() => add()} className="product-form__metadata__add-button">
-                    Add field
-                  </Button>
-              </>
-              )
-            }
-          </Form.List>
+          <MetadataForm />
         </Form>
       </Modal>
    );
