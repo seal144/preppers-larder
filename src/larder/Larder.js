@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Collapse, Button } from 'antd';
 import { DeleteOutlined, PlusOutlined, PlusCircleOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
@@ -11,13 +11,14 @@ import ItemModal from './ItemModal/ItemModal';
 const { Panel } = Collapse;
 
 //@todo add info in collapse
-class Larder extends React.Component {
-  state = {
-    productsMock: [],
-    itemModalVisible: false,
-  }
+const Larder = () => {
 
-  async componentDidMount() {
+  const [ productsMock, setProductsMock ] = useState([]);
+  const [ itemModalVisible, setItemModalVisible ] = useState(false);
+
+  useEffect(()=>{ fetchData(); },[]);
+
+  const fetchData= async () => {
     try {
       const fetchResponse = await fetch('data/productsMock.json');
 
@@ -25,27 +26,27 @@ class Larder extends React.Component {
         throw Error(fetchResponse.status);
       }
 
-      this.setState({ productsMock: await fetchResponse.json() });
+      setProductsMock( await fetchResponse.json());
     } catch(err) {
       console.error(err);
     }
-  }
+  };
 
-  removeProduct = (productId, event) => {
+  const removeProduct = (productId, event) => {
     event.stopPropagation();
     console.log(`removed product ${productId}`);
-  }
+  };
 
-  addItem = (productId, event) => {
+  const addItem = (productId, event) => {
     event.stopPropagation();
-    this.toggleItemModalVisibility();
-  }
+    setItemModalVisible(prevState => !prevState);
+  };
 
-  toggleItemModalVisibility = () => {
-    this.setState({ itemModalVisible: !this.state.itemModalVisible });
-  }
+  const toggleItemModalVisibility = () => {
+    setItemModalVisible(prevState => !prevState);
+  };
 
-  getHeaderText(product) {
+  const getHeaderText = (product) => {
     return (
       <span>
         <span className='bold'>{product.name}&nbsp;</span>
@@ -53,41 +54,38 @@ class Larder extends React.Component {
       </span>
     );
   };
-  
-  render() {
-    return (
-      <div>
-        <h1>YOUR LARDER</h1>
-        <Collapse>
-          {
-            this.state.productsMock.map(product => (
-              <Panel 
-                key={product.id} 
-                header={this.getHeaderText(product)} 
-                extra={
-                  <div>
-                    <PlusCircleOutlined onClick={(event)=>this.addItem(product.id, event)} />
-                    <DeleteOutlined onClick={(event) => this.removeProduct(product.id, event)}/>
-                  </div>
-                }
-              >
-                <Metadata metadata={product.metadata} />
-                {product.items && product.items.length ? <ItemsList product={product} /> : null}
-              </Panel>
-            ))
-          }
-        </Collapse>
+  return (
+    <div>
+      <h1>YOUR LARDER</h1>
+      <Collapse>
+        {
+          productsMock.map(product => (
+            <Panel 
+              key={product.id} 
+              header={getHeaderText(product)} 
+              extra={
+                <div>
+                  <PlusCircleOutlined onClick={(event)=>addItem(product.id, event)} />
+                  <DeleteOutlined onClick={(event) =>removeProduct(product.id, event)}/>
+                </div>
+              }
+            >
+              <Metadata metadata={product.metadata} />
+              {product.items && product.items.length ? <ItemsList product={product} /> : null}
+            </Panel>
+          ))
+        }
+      </Collapse>
 
-        <Link to="/larder/product">
-          <Button className="add-product-button" type="primary" shape="circle">
-            <PlusOutlined height="4rem" className="add-product-button__icon"/>
-          </Button>
-        </Link>
+      <Link to="/larder/product">
+        <Button className="add-product-button" type="primary" shape="circle">
+          <PlusOutlined height="4rem" className="add-product-button__icon"/>
+        </Button>
+      </Link>
 
-        <ItemModal visible={this.state.itemModalVisible} toggleVisibility={this.toggleItemModalVisibility}/>
-      </div>
-    );
-  };
+      <ItemModal visible={itemModalVisible} toggleVisibility={toggleItemModalVisibility}/>
+    </div>
+  );
 };
 
 export default Larder;
