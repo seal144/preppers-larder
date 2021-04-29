@@ -4,7 +4,7 @@ import { DeleteOutlined } from '@ant-design/icons';
 
 const MetadataForm = () => {
   return ( 
-    <Form.List name='metadata' className="metadata-form">
+    <Form.List name="metadata" className="metadata-form">
           {
             (fields, {add, remove}) => (
               <>
