@@ -1,7 +1,7 @@
 import React from 'react';
-import { Form, Input, InputNumber, Radio, Button, Space } from 'antd';
-import { DeleteOutlined } from '@ant-design/icons';
+import { Form, Input, InputNumber, Radio, Button } from 'antd';
 
+import MetadataForm from '../Metadata/MetadadaForm';
 import './Product.scss';
 
 const PRODUCT_TYPE = {
@@ -83,39 +83,7 @@ const Product = () => {
           <InputNumber min={0} precision={quantityPrecision} />
         </Form.Item>
         
-        <Form.List name='metadata'>
-          {
-            (fields, {add, remove}) => (
-              <>
-                {fields.map(field => (
-                  <Space key={field.key} className="product-form__metadata__space">
-                    <Form.Item 
-                      { ...field }
-                      className = "product-form__metadata__input"
-                      name={[field.name, 'metadataName']}
-                      rules={[{ required: true, message: 'Missing metadata name' }]}
-                    >
-                      <Input placeholder="metadata name" />
-                    </Form.Item>
-
-                    <Form.Item 
-                      { ...field }
-                      className = "product-form__metadata__input"
-                      rules={[{ required: true, message: 'Missing metadata value' }]}
-                      name={[field.name, 'metadataValue']}
-                    >
-                      <Input placeholder="metadata value" />
-                    </Form.Item>
-                    <DeleteOutlined onClick={() => remove(field.name)} />
-                  </Space>
-                ))}
-                <Button onClick={() => add()} className="product-form__metadata__add-button">
-                  Add field
-                </Button>
-             </>
-            )
-          }
-        </Form.List>
+        <MetadataForm />
         
         <Button type="primary" htmlType="submit">Save</Button>
       </Form>
