@@ -17,6 +17,14 @@
       &__nav-icon {
         font-size: 1.5rem;
       }
+
+      &__header {
+        color: white;
+        font-size: 1.5rem;
+        text-align: center;
+        flex-grow: 1;
+        margin: 0;
+      }
     }
   }
 
