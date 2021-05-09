@@ -86,6 +86,7 @@ const RegisterPage = ({match}) => {
         onFinish={onFinish}
         onValuesChange={updateFormState}
         scrollToFirstError
+        autocomplete="off"
       >
         <Form.Item
           name="username"

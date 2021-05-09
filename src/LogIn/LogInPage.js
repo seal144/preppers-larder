@@ -62,6 +62,7 @@ const LogInPage = () => {
         name="basic"
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
+        autocomplete="off"
       >
         <Form.Item
           name="username"
