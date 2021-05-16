@@ -20,31 +20,29 @@ const NavContent = () => {
   };
 
   const getNav = () => {
-    if (currentPath === '/') {
+    const isLoginPage = currentPath === '/';
+    const isAccountPage = currentPath.includes('/account');
+
+    if (isLoginPage || isAccountPage) {
       return (
-        <h2 className="main-menu__item__header">Please Log In</h2>
-      );
-    } else if (currentPath.includes('/account')) {
-      return (
-        <h2 className="main-menu__item__header">Your account</h2>
-      );
-    } else {
-      return (
-        <>
-        {navData.map(navItem => (
-          <Menu.Item key={navItem.id} className="main-menu__item" icon={navItem.icon}>
-            <Link to={navItem.path}>
-              <span className="hidden-mobile">{navItem.label}</span>
-            </Link> 
-          </Menu.Item>
-        ))}
-        <Menu.Item className="main-menu__logout" icon={<LogoutOutlined className="main-menu__item__nav-icon" />}>
-            <Link onClick={logout}>
-            </Link> 
-        </Menu.Item>
-        </>
+        <h2 className="main-menu__item__header">{ isLoginPage ? 'Please Log In' : 'Your account' }</h2>
       );
     }
+    
+    return (
+      <>
+      {navData.map(navItem => (
+        <Menu.Item key={navItem.id} className="main-menu__item" icon={navItem.icon}>
+          <Link to={navItem.path}>
+            <span className="hidden-mobile">{navItem.label}</span>
+          </Link> 
+        </Menu.Item>
+      ))}
+      <Menu.Item className="main-menu__logout" icon={<LogoutOutlined className="main-menu__item__nav-icon" />}>
+        <Link onClick={logout}></Link> 
+      </Menu.Item>
+      </>
+    );
   };
 
   return(

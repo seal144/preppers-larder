@@ -1,30 +1,20 @@
 import React from 'react';
 import {Form, Input} from 'antd';
 
-import {MAX_CHAR_INPUT, MIN_CHAR_PASSWORD} from './variable';
+import {MAX_CHAR_INPUT, MIN_CHAR_PASSWORD} from '../variables';
 
 const SetPasswordInput = ({label}) => {
 
   const passwordValidator = (_,value) => {
-    if (value === undefined) return Promise.resolve();
-
-    value = value.toLowerCase();
-    const valueArray = value.split('');
-
-    const isLetter = valueArray.find(character => {
-      if (97 <= character.charCodeAt(0) && character.charCodeAt(0)<= 122) 
-      return true; 
-      return false;
-    });
-
-    const isNumber = valueArray.find(character => {
-      if(48 <= character.charCodeAt(0) && character.charCodeAt(0)<= 57)
-      return true;
-      return false;
-    });
+    if (value === undefined || value.length < MIN_CHAR_PASSWORD){
+      return Promise.resolve();
+    } 
     
-    if (!isLetter || !isNumber){
-      return Promise.reject(new Error(`Must contain at least one letter and a number!`));
+    const pattern = /\d+.*[a-z]+|[a-z]+.*\d+/i;
+    const hasLetterAndNumber = pattern.test(value);
+    
+    if (!hasLetterAndNumber){
+      return Promise.reject(new Error('Must contain at least one letter and a number!'));
     }
 
     return Promise.resolve();
@@ -55,10 +45,9 @@ const SetPasswordInput = ({label}) => {
             { required: true, message: 'Please confirm your password!' },
             ({ getFieldValue }) => ({
               validator(_, value) {
-                if (!value || getFieldValue('password') === value) {
-                  return Promise.resolve();
-                }
-                return Promise.reject(new Error('The two passwords that you entered do not match!'));
+                return !value || getFieldValue('password') === value
+                  ? Promise.resolve()
+                  : Promise.reject(new Error('The two passwords that you entered do not match!'));
               },
             }),
           ]}
