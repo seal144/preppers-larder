@@ -1,28 +1,29 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import {Form, Input, Button} from 'antd';
+import { Form, Input, Button } from 'antd';
 
-import './LoginRegisterPage.scss';
-import {MAX_CHAR_INPUT, MAX_CHAR_PASS_QUESTION} from './variable';
+import { MAX_CHAR_INPUT, MAX_CHAR_PASS_QUESTION } from '../variables';
 import SetPasswordInput from './SetPasswordInput';
 
 const formItemLayout = {
-  labelCol: { span:8 },
-  wrapperCol: { span:8 },
+  labelCol: { span: 8 },
+  wrapperCol: { span: 8 },
 };
 const tailFormItemLayout = {
-  wrapperCol: {offset:8, span:8},
+  wrapperCol: {offset: 8, span: 8},
 };
 
+//@todo separate components for register and change password
+
 const RegisterPage = ({match}) => {
-  const [ isNewUser, setIsNewUser ] = useState(true);
-  const [ formValues, setFormValues ] = useState({
+  const [isNewUser, setIsNewUser] = useState(true);
+  const [formValues, setFormValues] = useState({
     username:'',
     password:'',
     question: '',
     answer: '',
   });
-  const [ isCorrectAnswer, setIsCorrectAnswer ] = useState(false);
+  const [isCorrectAnswer, setIsCorrectAnswer] = useState(false);
 
   const history = useHistory();
   const [form] = Form.useForm();
@@ -30,7 +31,9 @@ const RegisterPage = ({match}) => {
   //@todo replace mocked user after db connection
   let dbUser = null;
   if(match.params.user==='164add'){
-    if(isNewUser) setIsNewUser(false);
+    if(isNewUser) {
+      setIsNewUser(false);
+    }
 
     dbUser = {
       id: '164add',
@@ -43,17 +46,20 @@ const RegisterPage = ({match}) => {
 
   const setConstFields = () => {
     form.setFields([
-      { name: 'username', value: dbUser.username},
-      { name: 'question', value: dbUser.question}
+      { name: 'username', value: dbUser.username },
+      { name: 'question', value: dbUser.question }
     ]);
   };
 
-  useEffect(()=>{
-    if (!isNewUser) {
-      setFormValues({...dbUser});
-      setConstFields();
-    }
-  },[]);
+  useEffect(
+    ()=>{
+      if (!isNewUser) {
+        setFormValues({...dbUser});
+        setConstFields();
+      }
+    },
+    []
+  );
 
   const answerValidator = (_,value) => {
     if (!isNewUser && value !== dbUser.answer ) {
@@ -66,7 +72,7 @@ const RegisterPage = ({match}) => {
   };
 
   const updateFormState = (_,inputValues) => {
-    setFormValues({...formValues, ...inputValues});
+    setFormValues({ ...formValues, ...inputValues });
     if(!isNewUser) {
       setConstFields();
     } 
@@ -86,6 +92,7 @@ const RegisterPage = ({match}) => {
         onFinish={onFinish}
         onValuesChange={updateFormState}
         scrollToFirstError
+        autocomplete="off"
       >
         <Form.Item
           name="username"
@@ -126,8 +133,8 @@ const RegisterPage = ({match}) => {
         {!isNewUser && isCorrectAnswer && <SetPasswordInput label="New password"/>}
 
         <Form.Item {...tailFormItemLayout}>
-          <Button type="primary" htmlType="submit" className="submit-button">
-            {isNewUser? 'Register': 'Change Password'}
+          <Button type="primary" htmlType="submit" className="wide-button">
+            { isNewUser? 'Register': 'Change Password' }
           </Button>
         </Form.Item>
       </Form>

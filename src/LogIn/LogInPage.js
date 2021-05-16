@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Row, Col } from 'antd';
 import { useHistory } from 'react-router-dom';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-
-import './LoginRegisterPage.scss';
 
 // @todo fix after db connection
 const dbUser = {
@@ -24,17 +22,12 @@ const LogInPage = () => {
   // @todo fix after db connection
   const onFinish = (values) => {
     if (values.username === dbUser.username && values.password === dbUser.password) {
-      console.log('Success:', values);
       history.push('/larder');
     } else if (values.username !== dbUser.username) {
       form.setFields([{ name: 'username', errors: ['Incorrect username!']}]);
     } else if (values.password !== dbUser.password) {
       form.setFields([{ name: 'password', errors: ['Incorrect password!']}]);
     }
-  };
-
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
   };
 
   const forgotPassword = () => {
@@ -61,7 +54,7 @@ const LogInPage = () => {
         form={form}
         name="basic"
         onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
+        autocomplete="off"
       >
         <Form.Item
           name="username"
@@ -78,16 +71,18 @@ const LogInPage = () => {
         >
           <Input.Password prefix={<LockOutlined />} placeholder="Password" />
         </Form.Item>
-        <Form.Item className="login-form__smallButtons">
-          <Button type="button" onClick={goToRegisterPage}>
-            Register
-          </Button>
-          <Button type="button" onClick={forgotPassword}>
-            Forgot password
-          </Button>
+        <Form.Item>
+          <Row>
+            <Col span={11}>
+              <Button type="button" className="wide-button" onClick={goToRegisterPage}>Register</Button>
+            </Col>
+            <Col span={11} offset={2}>
+              <Button type="button" className="wide-button"  onClick={forgotPassword}>Forgot password</Button>
+            </Col>
+          </Row>
         </Form.Item>
         <Form.Item >
-          <Button type="primary submit" htmlType="submit">
+          <Button type="primary submit" htmlType="submit" className="wide-button">
             Login
           </Button>
         </Form.Item>
