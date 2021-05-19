@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Input, Button, Space } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 
-const MetadataForm = () => {
+const MetadataForm = ({layout}) => {
   return ( 
     <Form.List name='metadata' className="metadata-form">
           {
@@ -30,9 +30,16 @@ const MetadataForm = () => {
                     <DeleteOutlined onClick={() => remove(field.name)} />
                   </Space>
                 ))}
-                <Button onClick={() => add()} className="metadata-form__add-button">
-                  Add field
-                </Button>
+
+                <Form.Item {...layout}>
+                  <Button 
+                    onClick={() => add()} 
+                    className="metadata-form__add-button"
+                    className="wide-element"
+                  >
+                    Add field
+                  </Button>
+                </Form.Item>
              </>
             )
           }
