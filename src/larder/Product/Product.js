@@ -12,12 +12,12 @@ const PRODUCT_TYPE = {
 const MAX_QUANTITY = 1000000;
 
 const formLayout = {
-  labelCol: { span: 7 },
-  wrapperCol: { span: 10 },
+  labelCol: { span: 6 },
+  wrapperCol: { span: 12 },
 };
 
 const tailFormLayout = {
-  wrapperCol: {offset: 7, span: 10},
+  wrapperCol: {offset: 6, span: 12},
 };
 
 const Product = () => {
@@ -59,7 +59,7 @@ const Product = () => {
         onValuesChange={updateFormState}
         onFinish={handleSubmit}
         initialValues={{ ...productForm }}
-        size="large"
+        size="medium"
         name="productForm"
       >
         <Form.Item 
