@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Collapse, Button, Tooltip } from 'antd';
-import { DeleteOutlined, PlusOutlined, PlusCircleOutlined } from '@ant-design/icons';
+import { DeleteOutlined, PlusOutlined, PlusCircleOutlined, EditOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 
 import Metadata from './Metadata/Metadata';
@@ -31,14 +31,19 @@ const Larder = () => {
     }
   };
 
-  const removeProduct = (productId, event) => {
-    event.stopPropagation();
-    console.log(`removed product ${productId}`);
-  };
-
   const addItem = (productId, event) => {
     event.stopPropagation();
     setItemModalVisible(prevState => !prevState);
+  };
+
+  const editItem = (productId, event) => {
+    event.stopPropagation();
+    console.log(`edit product ${productId}`);
+  };
+
+  const removeProduct = (productId, event) => {
+    event.stopPropagation();
+    console.log(`removed product ${productId}`);
   };
 
   const toggleItemModalVisibility = () => {
@@ -64,8 +69,27 @@ const Larder = () => {
               header={getHeaderText(product)} 
               extra={
                 <div>
-                  <PlusCircleOutlined onClick={(event)=>addItem(product.id, event)} />
-                  <DeleteOutlined onClick={(event) =>removeProduct(product.id, event)}/>
+                  <Button 
+                    size="small" 
+                    className="larder-collapse__button" 
+                    onClick={(event)=>addItem(product.id, event)}
+                  >
+                      <PlusCircleOutlined />
+                  </Button>
+                  <Button 
+                    size="small" 
+                    className="larder-collapse__button" 
+                    onClick={(event)=>editItem(product.id, event)}
+                  >
+                      <EditOutlined />
+                  </Button>
+                  <Button 
+                    size="small" 
+                    className="larder-collapse__button" 
+                    onClick={(event)=>addItem(product.id, event)}
+                  >
+                    <DeleteOutlined onClick={(event) =>removeProduct(product.id, event)}/>
+                  </Button>
                 </div>
               }
             >

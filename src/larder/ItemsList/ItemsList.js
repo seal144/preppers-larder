@@ -1,5 +1,5 @@
 import React from 'react';
-import { Collapse } from 'antd';
+import { Collapse, Button } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 
 import Metadata from '../Metadata/Metadata';
@@ -20,7 +20,15 @@ const ItemsList = (props) => {
     <Panel 
       key={item.id} 
       header={getHeaderText(item)}
-      extra={<DeleteOutlined onClick={(event) => removeItem(item.id, event)}/>}
+      extra={
+        <Button 
+          size="small" 
+          className="larder-collapse__button" 
+          onClick={(event) => removeItem(item.id, event)}
+        >
+          <DeleteOutlined />
+        </Button>
+      }
     >
       <Metadata metadata={item.metadata} />
     </Panel>

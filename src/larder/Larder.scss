@@ -8,3 +8,10 @@
   right: $content-vertical-padding;
   bottom: 12vh;
 }
+
+.larder-collapse {
+  &__button {
+    height: 1.8rem;
+    margin: 0 0.1rem;
+  }
+}
