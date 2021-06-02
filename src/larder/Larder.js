@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Collapse, Button, Tooltip, Popconfirm, message } from 'antd';
+import { Collapse, Button, Tooltip, Popconfirm } from 'antd';
 import { DeleteOutlined, PlusOutlined, PlusCircleOutlined, EditOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 
@@ -36,14 +36,13 @@ const Larder = () => {
     setItemModalVisible(prevState => !prevState);
   };
 
-  const editItem = (productId, event) => {
+  const editProduct = (productId, event) => {
     event.stopPropagation();
     console.log(`edit product ${productId}`);
   };
 
   const removeProduct = (productId, productName, event) => {
     event.stopPropagation();
-    message.success(`Removed product: ${productName}`);
     console.log(`removed product ${productId}`);
   };
 
@@ -80,7 +79,7 @@ const Larder = () => {
                   <Button 
                     size="small" 
                     className="larder-collapse__button" 
-                    onClick={(event)=>editItem(product.id, event)}
+                    onClick={(event)=>editProduct(product.id, event)}
                   >
                       <EditOutlined />
                   </Button>
