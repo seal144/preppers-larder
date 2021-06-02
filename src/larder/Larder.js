@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Collapse, Button, Tooltip } from 'antd';
+import { Collapse, Button, Tooltip, Popconfirm, message } from 'antd';
 import { DeleteOutlined, PlusOutlined, PlusCircleOutlined, EditOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 
@@ -41,8 +41,9 @@ const Larder = () => {
     console.log(`edit product ${productId}`);
   };
 
-  const removeProduct = (productId, event) => {
+  const removeProduct = (productId, productName, event) => {
     event.stopPropagation();
+    message.success(`Removed product: ${productName}`);
     console.log(`removed product ${productId}`);
   };
 
@@ -83,13 +84,21 @@ const Larder = () => {
                   >
                       <EditOutlined />
                   </Button>
-                  <Button 
-                    size="small" 
-                    className="larder-collapse__button" 
-                    onClick={(event)=>addItem(product.id, event)}
+                  <Popconfirm
+                    title="Delete?"
+                    onClick={(event)=>{event.stopPropagation();}}
+                    onConfirm={(event) =>removeProduct(product.id, product.name, event)}
+                    onCancel={(event)=>{event.stopPropagation();}}
+                    okText="Yes"
+                    cancelText="No"
                   >
-                    <DeleteOutlined onClick={(event) =>removeProduct(product.id, event)}/>
-                  </Button>
+                    <Button 
+                      size="small" 
+                      className="larder-collapse__button" 
+                    >
+                      <DeleteOutlined/>
+                      </Button>
+                  </Popconfirm>
                 </div>
               }
             >
@@ -101,7 +110,7 @@ const Larder = () => {
       </Collapse>
 
       <Link to="/larder/product">
-        <Tooltip title="Add Product">
+        <Tooltip title="Add product">
           <Button className="add-product-button" type="primary" shape="circle">
             <PlusOutlined height="4rem" className="add-product-button__icon"/>
           </Button>

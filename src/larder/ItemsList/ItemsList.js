@@ -1,5 +1,5 @@
 import React from 'react';
-import { Collapse, Button } from 'antd';
+import { Collapse, Button, Popconfirm, message } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 
 import Metadata from '../Metadata/Metadata';
@@ -12,6 +12,7 @@ function getHeaderText(item) {
 
 function removeItem(itemId, event) {
   event.stopPropagation();
+  message.success('removed item');
   console.log(`removed item ${itemId}`);
 }
 
@@ -21,13 +22,21 @@ const ItemsList = (props) => {
       key={item.id} 
       header={getHeaderText(item)}
       extra={
-        <Button 
-          size="small" 
-          className="larder-collapse__button" 
-          onClick={(event) => removeItem(item.id, event)}
+        <Popconfirm
+          title="Delete?"
+          onClick={(event)=>{event.stopPropagation();}}
+          onConfirm={(event) => removeItem(item.id, event)}
+          onCancel={(event)=>{event.stopPropagation();}}
+          okText="Yes"
+          cancelText="No"
         >
-          <DeleteOutlined />
-        </Button>
+          <Button 
+            size="small" 
+            className="larder-collapse__button" 
+          >
+            <DeleteOutlined />
+          </Button>
+        </Popconfirm>
       }
     >
       <Metadata metadata={item.metadata} />
