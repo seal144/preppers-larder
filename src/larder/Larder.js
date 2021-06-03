@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Collapse, Button, Tooltip, Popconfirm } from 'antd';
-import { DeleteOutlined, PlusOutlined, PlusCircleOutlined, EditOutlined } from '@ant-design/icons';
+import { Collapse, Button, Tooltip, Popconfirm, Dropdown, Menu } from 'antd';
+import { DeleteOutlined, PlusOutlined, PlusCircleOutlined, EditOutlined, EllipsisOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 
 import Metadata from './Metadata/Metadata';
 import ItemsList from './ItemsList/ItemsList';
 import ItemModal from './ItemModal/ItemModal';
+import useWindowDimensions from '../hooks/useWindowDimensions';
+import {SCREEN_SM} from '../variables';
 
 const { Panel } = Collapse;
 
@@ -14,6 +16,8 @@ const Larder = () => {
 
   const [ productsMock, setProductsMock ] = useState([]);
   const [ itemModalVisible, setItemModalVisible ] = useState(false);
+
+  const { width } = useWindowDimensions();
 
   useEffect(()=>{ fetchData(); },[]);
 
@@ -41,7 +45,7 @@ const Larder = () => {
     console.log(`edit product ${productId}`);
   };
 
-  const removeProduct = (productId, productName, event) => {
+  const removeProduct = (productId, event) => {
     event.stopPropagation();
     console.log(`removed product ${productId}`);
   };
@@ -58,53 +62,98 @@ const Larder = () => {
       </span>
     );
   };
+
   return (
     <div>
       <h1>YOUR LARDER</h1>
       <Collapse>
         {
-          productsMock.map(product => (
-            <Panel 
-              key={product.id} 
-              header={getHeaderText(product)} 
-              extra={
-                <div>
+          productsMock.map(product => {
+            const extraScreenLarge = (
+              <div>
+                <Button 
+                  size="small" 
+                  className="larder-collapse__button" 
+                  onClick={(event)=>addItem(product.id, event)}
+                >
+                    <PlusCircleOutlined />
+                </Button>
+                <Button 
+                  size="small" 
+                  className="larder-collapse__button" 
+                  onClick={(event)=>editProduct(product.id, event)}
+                >
+                    <EditOutlined />
+                </Button>
+                <Popconfirm
+                  title="Delete?"
+                  onClick={(event)=>{event.stopPropagation();}}
+                  onConfirm={(event) =>removeProduct(product.id, event)}
+                  onCancel={(event)=>{event.stopPropagation();}}
+                  okText="Yes"
+                  cancelText="No"
+                >
                   <Button 
                     size="small" 
                     className="larder-collapse__button" 
+                  >
+                    <DeleteOutlined/>
+                    </Button>
+                </Popconfirm>
+              </div>
+            );
+
+            const dropdownMenu = (
+              <Menu>
+                <Menu.Item icon={<PlusCircleOutlined />}>
+                  <Button 
+                    type="text" 
                     onClick={(event)=>addItem(product.id, event)}
                   >
-                      <PlusCircleOutlined />
+                    Add
                   </Button>
+                </Menu.Item>
+                <Menu.Item icon={<EditOutlined />}>
                   <Button 
-                    size="small" 
-                    className="larder-collapse__button" 
+                    type="text" 
                     onClick={(event)=>editProduct(product.id, event)}
                   >
-                      <EditOutlined />
+                    Edit
                   </Button>
-                  <Popconfirm
-                    title="Delete?"
-                    onClick={(event)=>{event.stopPropagation();}}
-                    onConfirm={(event) =>removeProduct(product.id, product.name, event)}
-                    onCancel={(event)=>{event.stopPropagation();}}
-                    okText="Yes"
-                    cancelText="No"
+                </Menu.Item>
+                <Menu.Item icon={<DeleteOutlined/>}>
+                  <Button 
+                    type="text" 
+                    onClick={(event) =>removeProduct(product.id, event)}
                   >
-                    <Button 
-                      size="small" 
-                      className="larder-collapse__button" 
-                    >
-                      <DeleteOutlined/>
-                      </Button>
-                  </Popconfirm>
-                </div>
-              }
-            >
-              <Metadata metadata={product.metadata} />
-              {product.items && product.items.length ? <ItemsList product={product} /> : null}
-            </Panel>
-          ))
+                    Remove
+                  </Button>
+                </Menu.Item>
+              </Menu>
+            );
+
+            const extraScreenSmall = (
+              <Dropdown overlay={dropdownMenu} placement="bottomRight">
+                <Button 
+                  className="larder-collapse__button"
+                  onClick={(event)=>{event.stopPropagation();}}
+                >
+                  <EllipsisOutlined />
+                </Button>
+              </Dropdown>
+            );
+
+            return(
+              <Panel 
+                key={product.id} 
+                header={getHeaderText(product)} 
+                extra={ width<SCREEN_SM ? extraScreenSmall : extraScreenLarge}
+              >
+                <Metadata metadata={product.metadata} />
+                {product.items && product.items.length ? <ItemsList product={product} /> : null}
+              </Panel>
+            );
+          })
         }
       </Collapse>
 
