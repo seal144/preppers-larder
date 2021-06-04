@@ -105,29 +105,37 @@ const Larder = () => {
 
             const dropdownMenu = (
               <Menu>
-                <Menu.Item icon={<PlusCircleOutlined />}>
+                <Menu.Item >
                   <Button 
                     type="text" 
                     onClick={(event)=>addItem(product.id, event)}
                   >
-                    Add
+                    <PlusCircleOutlined />
                   </Button>
                 </Menu.Item>
-                <Menu.Item icon={<EditOutlined />}>
+                <Menu.Item>
                   <Button 
                     type="text" 
                     onClick={(event)=>editProduct(product.id, event)}
                   >
-                    Edit
+                    <EditOutlined />
                   </Button>
                 </Menu.Item>
-                <Menu.Item icon={<DeleteOutlined/>}>
-                  <Button 
-                    type="text" 
-                    onClick={(event) =>removeProduct(product.id, event)}
+                <Menu.Item>
+                  <Popconfirm
+                    title="Delete?"
+                    onClick={(event)=>{event.stopPropagation();}}
+                    onConfirm={(event) =>removeProduct(product.id, event)}
+                    onCancel={(event)=>{event.stopPropagation();}}
+                    okText="Yes"
+                    cancelText="No"
                   >
-                    Remove
-                  </Button>
+                    <Button 
+                      type="text" 
+                    >
+                      <DeleteOutlined/>
+                    </Button>
+                  </Popconfirm>
                 </Menu.Item>
               </Menu>
             );
@@ -147,7 +155,7 @@ const Larder = () => {
               <Panel 
                 key={product.id} 
                 header={getHeaderText(product)} 
-                extra={ width<SCREEN_SM ? extraScreenSmall : extraScreenLarge}
+                extra={ width<SCREEN_SM ? extraScreenSmall : extraScreenLarge }
               >
                 <Metadata metadata={product.metadata} />
                 {product.items && product.items.length ? <ItemsList product={product} /> : null}
