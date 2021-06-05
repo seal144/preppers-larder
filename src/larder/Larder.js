@@ -64,9 +64,9 @@ const Larder = () => {
   };
 
   return (
-    <div>
-      <h1>YOUR LARDER</h1>
-      <Collapse>
+    <div className="larder-container">
+      <h1 className="page-title">YOUR LARDER</h1>
+      <Collapse className="larder-collapse">
         {
           productsMock.map(product => {
             const extraScreenLarge = (
