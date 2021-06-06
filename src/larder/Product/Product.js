@@ -31,8 +31,10 @@ let tailFormLayout = {...startTailFormLayout};
 
 let radioFormLayout = {...StartRadioFormLayout};
 
-const Product = () => {
+const Product = ({match}) => {
 
+  const [isNewProduct, setIsNewProduct] = useState(true);
+  
   const [productForm, setProductForm] = useState({
     name: '',
     type: PRODUCT_TYPE.COUNTABLE,
@@ -41,6 +43,18 @@ const Product = () => {
   });
 
   const [verticalFormToggle, setVerticalFormToggle] = useState(false);
+
+  //@todo replace mocked product after db connection
+  if(match.params.productId && isNewProduct){
+    setIsNewProduct(prevState=>!prevState);
+
+    setProductForm({
+      name: 'oliwki',
+      type: PRODUCT_TYPE.COUNTABLE,
+      desiredQuantity: 5,
+      metadata: [{metadataName:'opakowanie', metadataValue:'słoik'}, {metadataName:'kolor', metadataValue:'zielone'}]
+    });
+  }
 
   const { width } = useWindowDimensions();
 

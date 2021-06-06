@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Collapse, Button, Tooltip, Popconfirm, Dropdown, Menu } from 'antd';
 import { DeleteOutlined, PlusOutlined, PlusCircleOutlined, EditOutlined, EllipsisOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import Metadata from './Metadata/Metadata';
 import ItemsList from './ItemsList/ItemsList';
@@ -13,6 +13,7 @@ const { Panel } = Collapse;
 
 //@todo add info in collapse
 const Larder = () => {
+  const history = useHistory();
 
   const [ productsMock, setProductsMock ] = useState([]);
   const [ itemModalVisible, setItemModalVisible ] = useState(false);
@@ -42,7 +43,7 @@ const Larder = () => {
 
   const editProduct = (productId, event) => {
     event.stopPropagation();
-    console.log(`edit product ${productId}`);
+    history.push(`/larder/product/${productId}`);
   };
 
   const removeProduct = (productId, event) => {
