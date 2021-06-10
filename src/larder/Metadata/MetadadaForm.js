@@ -40,9 +40,9 @@ const MetadataForm = ({layout}) => {
                         </Form.Item>
                       </Col>
                       <Col flex="none" >
-                          <Button onClick={() => remove(field.name)} className='wide-element'>
-                            <DeleteOutlined />
-                          </Button>
+                        <Button onClick={() => remove(field.name)} className='wide-element'>
+                          <DeleteOutlined />
+                        </Button>
                      </Col>
                     </Row>
                   </Form.Item>
