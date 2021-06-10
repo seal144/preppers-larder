@@ -44,7 +44,7 @@ const Product = () => {
 
   const { width } = useWindowDimensions();
 
-  if(width < 600 ) {
+  if (width < 600 ) {
     formLayout = {
       labelCol: {span: 24},
       wrapperCol: {span: 24},
