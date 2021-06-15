@@ -14,7 +14,7 @@ const MetadataForm = ({layout}) => {
                       <Col span={9}>
                         <Form.Item 
                           { ...field }
-                          className = "metadata-form__input"
+                          className="metadata-form__input"
                           name={[field.name, 'metadataName']}
                           rules={[{ required: true, message: 'Missing metadata name' }]}
                         >
