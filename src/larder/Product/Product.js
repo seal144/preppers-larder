@@ -58,7 +58,7 @@ const Product = () => {
       wrapperCol: {span: 24},
     };
 
-    if (!verticalFormToggle){
+    if (!verticalFormToggle) {
       setVerticalFormToggle(true);
     }
   } else if(width < 1000) {
