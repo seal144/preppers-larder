@@ -89,7 +89,8 @@ const Product = () => {
           ]}
         >
           <InputNumber 
-            min={0} precision={quantityPrecision} 
+            min={0} 
+            precision={quantityPrecision} 
             className='wide-element'
           />
         </Form.Item>
