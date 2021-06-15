@@ -61,7 +61,7 @@ const Product = () => {
     if (!verticalFormToggle) {
       setVerticalFormToggle(true);
     }
-  } else if(width < 1000) {
+  } else if (width < 1000) {
     formLayout = {
       labelCol: { span: 9 },
       wrapperCol: { span: 15 },
