@@ -27,8 +27,8 @@ const ItemModal = ({ visible, productId, itemId, hideItemModal }) => {
   },[visible]);
   
   const onSaveItem = () => {
-    console.log('onSave', itemForm, productId);
-    //@todo get actual time
+    const addDate = moment().format();
+    console.log('onSave', itemForm, productId, addDate);
     hideItemModal();
   };
 
