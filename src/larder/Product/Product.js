@@ -63,7 +63,7 @@ const Product = ({match}) => {
 
   const { width } = useWindowDimensions();
 
-  if(width < 600 ) {
+  if (width < 600 ) {
     formLayout = {
       labelCol: {span: 24},
       wrapperCol: {span: 24},
@@ -77,10 +77,10 @@ const Product = ({match}) => {
       wrapperCol: {span: 24},
     };
 
-    if (!verticalFormToggle){
+    if (!verticalFormToggle) {
       setVerticalFormToggle(true);
     }
-  } else if(width < 1000) {
+  } else if (width < 1000) {
     formLayout = {
       labelCol: { span: 9 },
       wrapperCol: { span: 15 },
@@ -94,7 +94,7 @@ const Product = ({match}) => {
       wrapperCol: {offset: 2, span: 22},
     };
 
-    if (verticalFormToggle){
+    if (verticalFormToggle) {
       setVerticalFormToggle(false);
     }
   } else {
