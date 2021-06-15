@@ -43,7 +43,6 @@ const MetadataForm = ({layout}) => {
                 <Form.Item {...layout}>
                   <Button 
                     onClick={() => add()} 
-
                     className="wide-element"
                   >
                     Add field
