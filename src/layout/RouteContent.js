@@ -42,6 +42,12 @@ const RouteContent = () => {
         />
 
         <Route 
+          path="/larder/product/:productId" 
+          component={Product}
+          exact
+        />
+
+        <Route 
           path="/shopping-list" 
           component={ShoppingList} 
           exact

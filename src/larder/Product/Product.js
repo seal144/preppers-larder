@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Form, Input, InputNumber, Radio, Button } from 'antd';
 
 import MetadataForm from '../Metadata/MetadadaForm';
@@ -31,8 +31,10 @@ let tailFormLayout = {...startTailFormLayout};
 
 let radioFormLayout = {...StartRadioFormLayout};
 
-const Product = () => {
+const Product = ({match}) => {
 
+  const [isNewProduct, setIsNewProduct] = useState(true);
+  
   const [productForm, setProductForm] = useState({
     name: '',
     type: PRODUCT_TYPE.COUNTABLE,
@@ -41,6 +43,23 @@ const Product = () => {
   });
 
   const [verticalFormToggle, setVerticalFormToggle] = useState(false);
+
+  const [form] = Form.useForm();
+
+  //@todo replace mocked product after db connection
+  useEffect(()=>{
+    if(match.params.productId){
+      const product ={
+        name: 'oliwki',
+        type: PRODUCT_TYPE.COUNTABLE,
+        desiredQuantity: 5,
+        metadata: [{metadataName:'opakowanie', metadataValue:'słoik'}, {metadataName:'kolor', metadataValue:'zielone'}]
+      };
+
+      setProductForm(product);
+      form.setFieldsValue(product);
+    }
+  },[]);
 
   const { width } = useWindowDimensions();
 
@@ -111,12 +130,15 @@ const Product = () => {
 
   return ( 
     <div className="product-form">
+      <h1 className="page-title">
+        {isNewProduct? 'ADD PRODUCT' : 'EDIT PRODUCT'}
+      </h1>
       <Form
         {...formLayout}
+        form = {form}
         layout = {verticalFormToggle ? "vertical" : "horizontal"}    
         onValuesChange={updateFormState}
         onFinish={handleSubmit}
-        initialValues={{ ...productForm }}
         size="medium"
         name="productForm"
       >

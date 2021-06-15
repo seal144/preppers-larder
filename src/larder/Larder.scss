@@ -1,5 +1,10 @@
 @import "../style/variable.scss";
 
+.larder-container {
+  margin: 0 auto;
+  max-width: 800px;
+}
+
 .add-product-button {
   width: 4rem;
   height: 4rem;
@@ -7,4 +12,14 @@
   position: fixed;
   right: $content-vertical-padding;
   bottom: 12vh;
+}
+
+.larder-collapse {
+  background-color: $app-theme-light;
+
+  &__button {
+    height: 1.8rem;
+    margin: 0 0.1rem;
+    background-color: $app-theme-light;
+  }
 }
