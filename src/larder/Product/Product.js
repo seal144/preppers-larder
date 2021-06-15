@@ -75,7 +75,7 @@ const Product = () => {
       wrapperCol: {offset: 2, span: 22},
     };
 
-    if (verticalFormToggle){
+    if (verticalFormToggle) {
       setVerticalFormToggle(false);
     }
   } else {
