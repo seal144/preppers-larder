@@ -74,15 +74,15 @@ const LogInPage = () => {
         <Form.Item>
           <Row>
             <Col span={11}>
-              <Button type="button" className="wide-button" onClick={goToRegisterPage}>Register</Button>
+              <Button type="button" className="wide-element" onClick={goToRegisterPage}>Register</Button>
             </Col>
             <Col span={11} offset={2}>
-              <Button type="button" className="wide-button"  onClick={forgotPassword}>Forgot password</Button>
+              <Button type="button" className="wide-element"  onClick={forgotPassword}>Forgot password</Button>
             </Col>
           </Row>
         </Form.Item>
         <Form.Item >
-          <Button type="primary submit" htmlType="submit" className="wide-button">
+          <Button type="primary submit" htmlType="submit" className="wide-element">
             Login
           </Button>
         </Form.Item>

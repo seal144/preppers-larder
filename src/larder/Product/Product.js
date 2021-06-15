@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Input, InputNumber, Radio, Button } from 'antd';
 
 import MetadataForm from '../Metadata/MetadadaForm';
-import './Product.scss';
+import { MAX_CHAR_LONG_INPUT } from '../../variables';
 
 const PRODUCT_TYPE = {
   COUNTABLE: 'COUNTABLE',
@@ -10,6 +10,15 @@ const PRODUCT_TYPE = {
 };
 
 const MAX_QUANTITY = 1000000;
+
+const formLayout = {
+  labelCol: { span: 6 },
+  wrapperCol: { span: 12 },
+};
+
+const tailFormLayout = {
+  wrapperCol: { offset: 6, span: 12 },
+};
 
 const Product = () => {
 
@@ -45,13 +54,12 @@ const Product = () => {
   return ( 
     <div className="product-form">
       <Form
-        labelCol={{ span: 4 }}
-        wrapperCol={{ span: 14 }}
+        {...formLayout}
         layout="horizontal"
         onValuesChange={updateFormState}
         onFinish={handleSubmit}
         initialValues={{ ...productForm }}
-        size="large"
+        size="medium"
         name="productForm"
       >
         <Form.Item 
@@ -59,13 +67,13 @@ const Product = () => {
           name="name"
           rules={[
             { required: true, message: 'Product name is required' },
-            { max: 50, message: 'Product name can have maximum 50 characters' }
+            { max: MAX_CHAR_LONG_INPUT, message: `Product name can have maximum ${MAX_CHAR_LONG_INPUT} characters` }
           ]}
         >
           <Input />
         </Form.Item>
 
-        <Form.Item name="type">
+        <Form.Item name="type" {...tailFormLayout}>
           <Radio.Group>
             <Radio value={PRODUCT_TYPE.COUNTABLE}>countable</Radio>
             <Radio value={PRODUCT_TYPE.UNCOUNTABLE}>uncountable</Radio>
@@ -80,12 +88,20 @@ const Product = () => {
             { validator: maxQuantity }
           ]}
         >
-          <InputNumber min={0} precision={quantityPrecision} />
+          <InputNumber 
+            min={0} 
+            precision={quantityPrecision} 
+            className='wide-element'
+          />
         </Form.Item>
         
-        <MetadataForm />
+        <MetadataForm layout={tailFormLayout}/>
         
-        <Button type="primary" htmlType="submit">Save</Button>
+        <Form.Item {...tailFormLayout}>
+          <Button type="primary" htmlType="submit" className="wide-element">
+            Save
+          </Button>
+        </Form.Item>
       </Form>
     </div>
   );

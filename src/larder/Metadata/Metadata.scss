@@ -10,3 +10,9 @@
   font-size: 0.8rem;
   padding-right: 0.5rem;
 }
+
+.metadata-form {
+  &__input {
+    margin: 0;
+  }
+}

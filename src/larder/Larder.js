@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Collapse, Button } from 'antd';
+import { Collapse, Button, Tooltip } from 'antd';
 import { DeleteOutlined, PlusOutlined, PlusCircleOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 
-import './Larder.scss';
 import Metadata from './Metadata/Metadata';
 import ItemsList from './ItemsList/ItemsList';
 import ItemModal from './ItemModal/ItemModal';
@@ -78,9 +77,11 @@ const Larder = () => {
       </Collapse>
 
       <Link to="/larder/product">
-        <Button className="add-product-button" type="primary" shape="circle">
-          <PlusOutlined height="4rem" className="add-product-button__icon"/>
-        </Button>
+        <Tooltip title="Add Product">
+          <Button className="add-product-button" type="primary" shape="circle">
+            <PlusOutlined height="4rem" className="add-product-button__icon"/>
+          </Button>
+        </Tooltip>
       </Link>
 
       <ItemModal visible={itemModalVisible} toggleVisibility={toggleItemModalVisibility}/>

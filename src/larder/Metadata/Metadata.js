@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './Metadata.scss';
-
 const Metadata = function(props) {
 
   const details = Object.keys(props.metadata)
