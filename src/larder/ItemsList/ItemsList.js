@@ -15,11 +15,6 @@ const ItemsList = (props) => {
     return item.expireAt ? `expire: ${item.expireAt}` : `added: ${item.addedAt}`;
   }
   
-  function editItem(itemId, event) {
-    event.stopPropagation();
-    console.log(`edit product ${itemId}`);
-  };
-  
   function removeItem(itemId, event) {
     event.stopPropagation();
     console.log(`removed item ${itemId}`);
@@ -31,7 +26,7 @@ const ItemsList = (props) => {
           <Button 
             size="small" 
             className="larder-collapse__button" 
-            onClick={(event)=>editItem(item.id, event)}
+            onClick={(event)=>props.editItem(item.id, props.product.id, event)}
           >
               <EditOutlined />
           </Button>
@@ -58,7 +53,7 @@ const ItemsList = (props) => {
         <Menu.Item>
           <Button 
             type="text" 
-            onClick={(event)=>editItem(item.id, event)}
+            onClick={(event)=>props.editItem(item.id, props.product.id, event)}
           >
             <EditOutlined />
           </Button>

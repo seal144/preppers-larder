@@ -16,7 +16,11 @@ const Larder = () => {
   const history = useHistory();
 
   const [ productsMock, setProductsMock ] = useState([]);
-  const [ itemModalVisible, setItemModalVisible ] = useState(false);
+  const [ itemModalForm, setItemModalForm ] = useState({
+    visible: false,
+    productId: null,
+    itemId: null
+  });
 
   const { width } = useWindowDimensions();
 
@@ -38,7 +42,28 @@ const Larder = () => {
 
   const addItem = (productId, event) => {
     event.stopPropagation();
-    setItemModalVisible(prevState => !prevState);
+    setItemModalForm({
+      visible: true,
+      productId,
+      itemId: null
+    });
+  };
+
+  const editItem = (itemId, productId, event) => {
+    event.stopPropagation();
+    setItemModalForm({
+      visible: true,
+      productId,
+      itemId
+    });
+  };
+
+  const hideItemModal = () => {
+    setItemModalForm({
+      visible: false,
+      productId: null,
+      itemId: null
+    });
   };
 
   const editProduct = (productId, event) => {
@@ -49,10 +74,6 @@ const Larder = () => {
   const removeProduct = (productId, event) => {
     event.stopPropagation();
     console.log(`removed product ${productId}`);
-  };
-
-  const toggleItemModalVisibility = () => {
-    setItemModalVisible(prevState => !prevState);
   };
 
   const getHeaderText = (product) => {
@@ -159,7 +180,12 @@ const Larder = () => {
                 extra={ width<SCREEN_SM ? extraScreenSmall : extraScreenLarge }
               >
                 <Metadata metadata={product.metadata} />
-                {product.items && product.items.length ? <ItemsList product={product} /> : null}
+                {product.items && product.items.length ? 
+                  <ItemsList 
+                    product={product} 
+                    editItem = {editItem}
+                  /> : 
+                  null}
               </Panel>
             );
           })
@@ -174,9 +200,16 @@ const Larder = () => {
         </Tooltip>
       </Link>
 
-      <ItemModal visible={itemModalVisible} toggleVisibility={toggleItemModalVisibility}/>
+      <ItemModal 
+        visible={itemModalForm.visible}
+        productId={itemModalForm.productId}
+        itemId={itemModalForm.itemId}
+        hideItemModal={hideItemModal}
+      />
     </div>
   );
 };
 
 export default Larder;
+
+

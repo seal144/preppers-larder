@@ -1,22 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Modal, Form, DatePicker } from 'antd';
+import moment from 'moment';
 
 import MetadataForm from '../Metadata/MetadadaForm';
 
-const ItemModal = ({ visible, toggleVisibility }) => {
+const ItemModal = ({ visible, productId, itemId, hideItemModal }) => {
   const [form] = Form.useForm();
 
   const emptyItemForm = {
     expirationDate: null,
-    addDate: null,
     metadata: [],
   };
 
-  const [itemForm, setItemForm] = React.useState({ ...emptyItemForm });
+  const [itemForm, setItemForm] = useState({ ...emptyItemForm });
+
+  useEffect(()=>{
+    if (itemId){
+      const item = {
+        expirationDate: moment('2023-01-01'),
+        metadata: [{metadataName:'type', metadataValue:'hazelnuts'}, {metadataName:'weight', metadataValue:'200g'}]
+      };
+      
+      setItemForm(item);
+      form.setFieldsValue(item);
+    }
+  },[visible]);
   
   const onSaveItem = () => {
-    console.log('onSave', itemForm);
-    toggleVisibility();
+    console.log('onSave', itemForm, productId);
+    //@todo get actual time
+    hideItemModal();
   };
 
   const updateFormState = (_, formValue) => {
@@ -30,7 +43,7 @@ const ItemModal = ({ visible, toggleVisibility }) => {
         visible={visible}
         maskClosable={false}
         onOk={form.submit}
-        onCancel={toggleVisibility}
+        onCancel={hideItemModal}
         destroyOnClose={true}
       >
         <Form
