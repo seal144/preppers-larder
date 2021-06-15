@@ -17,7 +17,7 @@ const formLayout = {
 };
 
 const tailFormLayout = {
-  wrapperCol: {offset: 6, span: 12},
+  wrapperCol: { offset: 6, span: 12 },
 };
 
 const Product = () => {
