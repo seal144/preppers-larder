@@ -12,28 +12,20 @@ const PRODUCT_TYPE = {
 
 const MAX_QUANTITY = 1000000;
 
-const startFormLayout = {
-  labelCol: { span: 6 },
-  wrapperCol: { span: 12 },
+const formLayout = {
+  labelCol: { xs: { span: 24 }, sm: { span: 9 }, lg: { span: 6 } },
+  wrapperCol: { xs: { span: 24 }, sm: {span: 15 }, lg: { span: 12 } },
 };
 
-const StartRadioFormLayout = {
-  wrapperCol: {offset: 6, span: 12},
+const radioFormLayout = {
+  wrapperCol: { xs: { span: 24 }, sm: {offset: 9, span: 15}, lg: { offset: 6, span: 12 } }
 };
 
-const startTailFormLayout = {
-  wrapperCol: {offset: 6, span: 12},
+const tailFormLayout = {
+  wrapperCol: { xs: { span: 24 }, sm: {offset: 2, span: 22}, lg: { offset: 6, span:12 } } 
 };
-
-let formLayout = {...startFormLayout};
-
-let tailFormLayout = {...startTailFormLayout};
-
-let radioFormLayout = {...StartRadioFormLayout};
 
 const Product = ({match}) => {
-
-  const [isNewProduct, setIsNewProduct] = useState(true);
   
   const [productForm, setProductForm] = useState({
     name: '',
@@ -63,48 +55,15 @@ const Product = ({match}) => {
 
   const { width } = useWindowDimensions();
 
-  if (width < 600 ) {
-    formLayout = {
-      labelCol: {span: 24},
-      wrapperCol: {span: 24},
-    };
-
-    radioFormLayout = {
-      wrapperCol: {span: 24},
-    };
-
-    tailFormLayout = {
-      wrapperCol: {span: 24},
-    };
-
+  if ( width < 576) {
     if (!verticalFormToggle) {
       setVerticalFormToggle(true);
     }
-  } else if (width < 1000) {
-    formLayout = {
-      labelCol: { span: 9 },
-      wrapperCol: { span: 15 },
-    };
-
-    radioFormLayout = {
-      wrapperCol: {offset: 9, span: 15},
-    };
-
-    tailFormLayout = {
-      wrapperCol: {offset: 2, span: 22},
-    };
-
+  } else if (width >= 576) {
     if (verticalFormToggle) {
       setVerticalFormToggle(false);
     }
-  } else {
-    formLayout = {...startFormLayout};
-    tailFormLayout = {...startTailFormLayout};
-    radioFormLayout = {...StartRadioFormLayout};
-    if (verticalFormToggle){
-      setVerticalFormToggle(false);
-    }
-  }
+  };
 
   const handleSubmit = () => {
     console.log('submit', productForm);
@@ -131,7 +90,7 @@ const Product = ({match}) => {
   return ( 
     <div className="product-form">
       <h1 className="page-title">
-        {isNewProduct? 'ADD PRODUCT' : 'EDIT PRODUCT'}
+        {!match.params.productId ? 'ADD PRODUCT' : 'EDIT PRODUCT'}
       </h1>
       <Form
         {...formLayout}
