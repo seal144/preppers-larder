@@ -17,11 +17,11 @@ const formLayout = {
   wrapperCol: { xs: { span: 24 }, sm: {span: 15 }, lg: { span: 12 } },
 };
 
-const radioFormLayout = {
+const radioLayout = {
   wrapperCol: { xs: { span: 24 }, sm: {offset: 9, span: 15}, lg: { offset: 6, span: 12 } }
 };
 
-const tailFormLayout = {
+const buttonMetadataLayout = {
   wrapperCol: { xs: { span: 24 }, sm: {offset: 2, span: 22}, lg: { offset: 6, span:12 } } 
 };
 
@@ -98,6 +98,7 @@ const Product = ({match}) => {
         layout = {verticalFormToggle ? "vertical" : "horizontal"}    
         onValuesChange={updateFormState}
         onFinish={handleSubmit}
+        initialValues= {productForm}
         size="medium"
         name="productForm"
       >
@@ -112,7 +113,7 @@ const Product = ({match}) => {
           <Input />
         </Form.Item>
 
-        <Form.Item name="type" {...radioFormLayout}>
+        <Form.Item name="type" {...radioLayout}>
           <Radio.Group>
             <Radio value={PRODUCT_TYPE.COUNTABLE}>countable</Radio>
             <Radio value={PRODUCT_TYPE.UNCOUNTABLE}>uncountable</Radio>
@@ -129,14 +130,14 @@ const Product = ({match}) => {
         >
           <InputNumber 
             min={0} precision={quantityPrecision} 
-            className='wide-element'
+            className='full-width'
           />
         </Form.Item>
         
-        <MetadataForm layout={tailFormLayout}/>
+        <MetadataForm layout={buttonMetadataLayout}/>
         
-        <Form.Item {...tailFormLayout}>
-          <Button type="primary" htmlType="submit" className="wide-element">
+        <Form.Item {...buttonMetadataLayout}>
+          <Button type="primary" htmlType="submit" className="full-width">
             Save
           </Button>
         </Form.Item>

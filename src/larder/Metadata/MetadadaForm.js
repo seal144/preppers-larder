@@ -40,7 +40,7 @@ const MetadataForm = ({layout}) => {
                         </Form.Item>
                       </Col>
                       <Col flex="none" >
-                        <Button onClick={() => remove(field.name)} className='wide-element'>
+                        <Button onClick={() => remove(field.name)} className='full-width'>
                           <DeleteOutlined />
                         </Button>
                      </Col>
@@ -52,7 +52,7 @@ const MetadataForm = ({layout}) => {
                   <Button 
                     onClick={() => add()} 
 
-                    className="wide-element"
+                    className="full-width"
                   >
                     Add field
                   </Button>

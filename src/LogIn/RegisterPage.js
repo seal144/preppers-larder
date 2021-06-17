@@ -133,7 +133,7 @@ const RegisterPage = ({match}) => {
         {!isNewUser && isCorrectAnswer && <SetPasswordInput label="New password"/>}
 
         <Form.Item {...tailFormItemLayout}>
-          <Button type="primary" htmlType="submit" className="wide-element">
+          <Button type="primary" htmlType="submit" className="full-width">
             { isNewUser? 'Register': 'Change Password' }
           </Button>
         </Form.Item>
