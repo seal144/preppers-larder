@@ -60,7 +60,7 @@ const ItemModal = ({ visible, productId, itemId, hideItemModal }) => {
             label="Expiration date" 
             name="expirationDate"
           >
-           <DatePicker className="wide-element"/>
+           <DatePicker className="full-width"/>
           </Form.Item>
           <MetadataForm />
         </Form>
