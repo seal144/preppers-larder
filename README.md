@@ -1,5 +1,7 @@
 # preppers-larder
 
+This Project is a simple web app. It's used for menage your own pantry. With it, you can design your desired preppers larder. The app will build your shopping list of things you are in lack of and show you, which products are close to expire.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
