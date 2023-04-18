@@ -12,15 +12,18 @@ const NavContent = () => {
   const currentPath = useLocation().pathname;
   const selectedNavItem = navData.find(navItem => currentPath.includes(navItem.path));
   const selectedNavKey = selectedNavItem ? selectedNavItem.id : null;
-  
-  return(
-    <Menu 
-      theme="dark" 
-      mode="horizontal" 
-      selectedKeys={[selectedNavKey]}
-      className="main-menu"
-    >
-      {
+
+  const getNav = () => {
+    if (currentPath === '/') {
+      return (
+        <h2 className="main-menu__item__header">Please Log In</h2>
+      );
+    } else if (currentPath.includes('/account')) {
+      return (
+        <h2 className="main-menu__item__header">Your account</h2>
+      );
+    } else {
+      return (
         navData.map(navItem => (
           <Menu.Item key={navItem.id} className="main-menu__item" icon={navItem.icon}>
             <Link to={navItem.path}>
@@ -28,7 +31,18 @@ const NavContent = () => {
             </Link> 
           </Menu.Item>
         ))
-      }
+      );
+    }
+  };
+
+  return(
+    <Menu 
+      theme="dark" 
+      mode="horizontal" 
+      selectedKeys={[selectedNavKey]}
+      className="main-menu"
+    >
+      {getNav()}
     </Menu>
   );
 };

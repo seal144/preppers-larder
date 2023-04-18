@@ -1,0 +1,26 @@
+@import "../style/variable.scss";
+
+.login-form,
+.register-form {
+  margin: 30px auto;
+}
+
+.register-form button,
+.login-form button {
+  width: 100%;
+}
+
+.login-form {
+  width: 100%;
+  max-width: 350px;
+
+  &__smallButtons button {
+    width: 48%;
+    margin: 0 2% 0 0;
+  }
+
+  &__smallButtons button + button {
+    width: 48%;
+    margin: 0 0 0 2%;
+  }
+}
